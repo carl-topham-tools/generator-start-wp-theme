@@ -1,0 +1,25 @@
+{
+  "name": "generator-start-wp-theme",
+  "version": "0.0.1",
+  "description": "A starting point for developing Wordpress themes",
+  "keywords": [
+    "yeoman-generator",
+    "Wordpress theme",
+    "Wordpress",
+    "Theme",
+    "Development",
+    "PHP",
+    "Sass",
+    "Grunt"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carl Topham",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^0.17.1",
+    "chalk": "^0.5.0"
+  }
+}

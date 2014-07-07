@@ -1,0 +1,16 @@
+/*
+
+Style sheet for <%= themeName %>
+
+*/
+
+
+//Load the site variables
+@import 'variables';
+
+
+//load anything that is used to create other elements
+@import 'constructors/functions';
+
+//create modules for things like nav, content
+@import 'modules/wp-core';
