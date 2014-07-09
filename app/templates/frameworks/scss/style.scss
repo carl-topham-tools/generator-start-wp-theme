@@ -4,13 +4,25 @@ Style sheet for <%= themeName %>
 
 */
 
-
 //Load the site variables
 @import 'variables';
 
 
 //load anything that is used to create other elements
+@import 'constructors/generic-placeholder';//see notes in file
 @import 'constructors/functions';
+@import 'constructors/clearfix';//see notes in file
 
-//create modules for things like nav, content
+//Core styles
+@import 'core/reset'; //normalize is also available
+
+
+//Modules for things like nav, content
+//@import 'modules/module-name';
+
+//Default Wordpress classes for your enjoyment/ hacking!
 @import 'modules/wp-core';
+
+
+//Print styles & misc.
+@import 'modules/print';

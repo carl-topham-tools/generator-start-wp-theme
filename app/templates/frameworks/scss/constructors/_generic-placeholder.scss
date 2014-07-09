@@ -1,0 +1,33 @@
+//GENERIC PLACEHOLDER FUNCTION
+//Allows a placeholder to be created in the location it's first used,
+//not where it is placed in the sass file.
+//- See the clearfix for an example of how it's used
+
+// 1 - Map of placeholder keys
+$Placeholder-Selectors: (); 
+
+// ****    Generic @mixin-@function    ****
+// 2 - Make a placeholder for a key if it doesn't exist and fill it with the content from @content;
+//This can live in a generic functions scss file or something!
+@mixin testPlaceholderForKey($key, $extend : true) {
+  @if $extend == true {
+    $selector: map-get($Placeholder-Selectors, $key);  
+    @if $selector == null { //if no key is set
+      $selector: unique-id(); //make a unique class string    
+      $Placeholder-Selectors: map-merge($Placeholder-Selectors, ($key: $selector)) !global;
+      @at-root %#{$selector} {
+         @content; 
+      }
+    }
+  } @else {
+      @content; 
+  }
+}
+
+// 3 - Get a placeholder for a key and return the selector so we can use it
+@function getPlaceholderForKey($key) {
+  $selector: map-get($Placeholder-Selectors, $key);
+  @return $selector;
+}
+
+// ****    @END of Generic @mixin-@function pair    ****

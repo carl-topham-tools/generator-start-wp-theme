@@ -1,0 +1,52 @@
+//GENERIC FUNCTIONS
+//Map deep lookup function
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+ 
+  @return $map;
+}
+
+
+//COLOR FUNCTIONS:
+//Retrieve color palette
+@function palette($tone: 'primary', $variant:'base') {
+  @return map-deep-get($colors, $tone, $variant);
+}
+
+
+
+//BREAKPOINTS
+@mixin respondFrom($breakpoint) {
+  //get breakpoint
+  $bp : map-get($breakpoints, $breakpoint);
+ 
+  //apply passed content to breakpoint
+  @media screen and (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin respondTo($breakpoint) {
+  //get breakpoint
+  $bp : map-get($breakpoints, $breakpoint);
+ 
+  //apply passed content to breakpoint
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin respondBetween($breakpointIn, $breakpointOut) {
+  //get breakpoint
+  $bpIn : map-get($breakpoints, $breakpointIn);
+  $bpOut : map-get($breakpoints, $breakpointOut);
+
+  //apply passed content to breakpoint
+  @media screen and (min-width: $bpIn) and (max-width: $bpOut) {
+    @content;
+  }
+}
+
+  

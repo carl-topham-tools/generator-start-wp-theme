@@ -1,32 +1,38 @@
-<?php get_header(); ?>
+<?php
+/**
+ * @package WordPress
+ * @subpackage <%= themeName %>
+ * @since <%= themeName %> 1.0
+ */
+ get_header(); ?>
 
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-		<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
 
 			<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
 
-			<?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
+			<?php posted_on(); ?>
 
 			<div class="entry">
 				<?php the_content(); ?>
 			</div>
 
-			<div class="postmetadata">
-				<?php the_tags('Tags: ', ', ', '<br />'); ?>
-				Posted in <?php the_category(', ') ?> | 
-				<?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
-			</div>
+			<footer class="postmetadata">
+				<?php the_tags(__('Tags: ','<%= themeNameSpace %>'), ', ', '<br />'); ?>
+				<?php _e('Posted in','<%= themeNameSpace %>'); ?> <?php the_category(', ') ?> | 
+				<?php comments_popup_link(__('No Comments &#187;','<%= themeNameSpace %>'), __('1 Comment &#187;','<%= themeNameSpace %>'), __('% Comments &#187;','<%= themeNameSpace %>')); ?>
+			</footer>
 
-		</div>
+		</article>
 
 	<?php endwhile; ?>
 
-	<?php include (TEMPLATEPATH . '/inc/nav.php' ); ?>
+	<?php post_navigation(); ?>
 
 	<?php else : ?>
 
-		<h2>Not Found</h2>
+		<h2><?php _e('Nothing Found','<%= themeNameSpace %>'); ?></h2>
 
 	<?php endif; ?>
 

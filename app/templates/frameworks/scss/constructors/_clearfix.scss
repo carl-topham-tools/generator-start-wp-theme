@@ -1,0 +1,26 @@
+//REQUIRES generic placeholder
+
+//Usage @include clearfix() where needed.
+//Everything inside '@include testPlaceholderForKey('clearfix', $extend) {' will be included.
+//There are two 'keys' that need to be updated for all future placeholders
+// - in the above @include testPlaceholderForKey and in the below line:
+// getPlaceholderForKey('clearfix')
+//where 'clearfix' is the key! - enjoy ;-) 
+
+@mixin clearfix($extend : true) {  
+  // 1 - test for and create the placeholder
+  @include testPlaceholderForKey('clearfix', $extend) {
+    &:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0;
+    }
+  }
+  @if $extend == true {
+    // 2 - Always extend the created placeholder if extend isn't true
+    @extend %#{getPlaceholderForKey('clearfix')};
+  }
+}

@@ -1,18 +1,24 @@
-<?php get_header(); ?>
+<?php
+/**
+ * @package WordPress
+ * @subpackage <%= themeName %>
+ * @since <%= themeName %> 1.0
+ */
+ get_header(); ?>
 
 	<?php if (have_posts()) : ?>
 
-		<h2>Search Results</h2>
+		<h2><?php _e('Search Results','<%= themeNameSpace %>'); ?></h2>
 
-		<?php include (TEMPLATEPATH . '/inc/nav.php' ); ?>
+		<?php post_navigation(); ?>
 
 		<?php while (have_posts()) : the_post(); ?>
 
-			<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+			<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
 
 				<h2><?php the_title(); ?></h2>
 
-				<?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
+				<?php posted_on(); ?>
 
 				<div class="entry">
 
@@ -20,15 +26,15 @@
 
 				</div>
 
-			</div>
+			</article>
 
 		<?php endwhile; ?>
 
-		<?php include (TEMPLATEPATH . '/inc/nav.php' ); ?>
+		<?php post_navigation(); ?>
 
 	<?php else : ?>
 
-		<h2>No posts found.</h2>
+		<h2><?php _e('Nothing Found','<%= themeNameSpace %>'); ?></h2>
 
 	<?php endif; ?>
 

@@ -1,122 +1,99 @@
+/* Copied from HTML 5 Wordpress theme */
+/* Apply a natural box layout model to all elements: http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-@media screen {
+.chromeframe {position: absolute; top: 0;}
 
-* { margin: 0; padding: 0; }
-body { background: white; font: 14px/1.4 Georgia, Serif; }
-.screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
-.clear { clear: both; }
-.group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
-* html .group, *:first-child+html .group { zoom: 1; } /* First selector = IE6, Second Selector = IE 7 */
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
 
-#page-wrap { width: 960px; margin: 20px auto; }
+/* A Linux- and Windows-friendly sans-serif font stack: http://prospects.mhurrell.co.uk/post/updating-the-helvetica-font-stack */
+body {font: 13px Helmet, Freesans, sans-serif;}
 
-h1, h2, h3 { font-weight: normal; margin: 0 0 10px 0; }
-h1 { }
-h2 { }
-h3 { }
+/* We like off-black for text. */
+body, select, input, textarea {color: #333;}
 
-p { margin: 0 0 10px 0; }
-a { }
-a:hover { } 
+a {color: #03f;}
+a:hover {color: #69f;}
 
-blockquote { }
-blockquote p { }
+/* Custom text-selection colors (remove any text shadows: http://twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
 
-ul, ol { margin: 0 0 10px 0; }
+/*  j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
 
-.post { }
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
 
-.entry { }
-.entry a { }
-.entry a:hover { }
+/* Mozilla dosen't style place holders by default */
+input:-moz-placeholder { color:#a9a9a9; }
+textarea:-moz-placeholder { color:#a9a9a9; }
 
-pre { }
-code, tt { }
 
-#meta { }
-.postmetadata { }
+/* And here begins the WordPress fun.
+-------------------------------------------------------------------------------*/
 
-#sidebar { }
+#wrapper {width: 960px; margin: 20px auto;}
 
-.navgation { }
-   .next-posts { }
-   .prev-posts { }
+.post {}
 
-#searchform { }
-  #s { }
-  #searchsubmt { }
+.entry-content {}
+.entry-content a {}
+.entry-content a:hover {}
+
+#meta {}
+.postmetadata {}
+
+#sidebar {}
+
+.navgation {}
+.next-posts {}
+.prev-posts {}
+
+#searchform {}
+#s {}
+#searchsubmt {}
   
-ol.commentlist { list-style: none; }
-ol.commentlist li { }
-ol.commentlist li.alt { }
-ol.commentlist li.bypostauthor { }
-ol.commentlist li.byuser { }
-ol.commentlist li.comment-author-admin { }
-ol.commentlist li.comment { border-bottom: 1px dotted #666; padding: 10px; }
-ol.commentlist li.comment div.comment-author { }
-ol.commentlist li.comment div.vcard { }
-ol.commentlist li.comment div.vcard cite.fn { font-style: normal; }
-ol.commentlist li.comment div.vcard cite.fn a.url { }
-ol.commentlist li.comment div.vcard img.avatar { float:right; margin: 0 0 10px 10px; }
-ol.commentlist li.comment div.vcard img.avatar-32 { }
-ol.commentlist li.comment div.vcard img.photo { }
-ol.commentlist li.comment div.vcard span.says { }
-ol.commentlist li.comment div.commentmetadata { }
-ol.commentlist li.comment div.comment-meta { font-size: 10px; }
-ol.commentlist li.comment div.comment-meta a { color: #ccc; }
-ol.commentlist li.comment p { }
-ol.commentlist li.comment ul { }
-ol.commentlist li.comment div.reply { font-size: 11px; }
-ol.commentlist li.comment div.reply a { font-weight: bold; }
-ol.commentlist li.comment ul.children { list-style: none; margin: 10px 0 0; }
-ol.commentlist li.comment ul.children li { }
-ol.commentlist li.comment ul.children li.alt { }
-ol.commentlist li.comment ul.children li.bypostauthor { }
-ol.commentlist li.comment ul.children li.byuser { }
-ol.commentlist li.comment ul.children li.comment { }
-ol.commentlist li.comment ul.children li.comment-author-admin { }
-ol.commentlist li.comment ul.children li.depth-2 { border-left: 5px solid #555; margin: 0 0 10px 10px; }
-ol.commentlist li.comment ul.children li.depth-3 { border-left: 5px solid #999; margin: 0 0 10px 10px; }
-ol.commentlist li.comment ul.children li.depth-4 { border-left: 5px solid #bbb; margin: 0 0 10px 10px; }
-ol.commentlist li.comment ul.children li.depth-5 { }
-ol.commentlist li.comment ul.children li.odd { }
-ol.commentlist li.even { background: #fff; }
-ol.commentlist li.odd { background: #f6f6f6; }
-ol.commentlist li.parent { border-left: 5px solid #111; }
-ol.commentlist li.thread-alt { }
-ol.commentlist li.thread-even { }
-ol.commentlist li.thread-odd { }
-
-form { }
-input[type=text] { }
-textarea { }
+ol.commentlist {list-style: none;}
+ol.commentlist li {}
+ol.commentlist li.alt {}
+ol.commentlist li.bypostauthor {}
+ol.commentlist li.byuser {}
+ol.commentlist li.comment-author-admin {}
+ol.commentlist li.comment {border-bottom: 1px dotted #666; padding: 10px;}
+ol.commentlist li.comment div.comment-author {}
+ol.commentlist li.comment div.vcard {}
+ol.commentlist li.comment div.vcard cite.fn {font-style: normal;}
+ol.commentlist li.comment div.vcard cite.fn a.url {}
+ol.commentlist li.comment div.vcard img.avatar {float:right; margin: 0 0 10px 10px;}
+ol.commentlist li.comment div.vcard img.avatar-32 {}
+ol.commentlist li.comment div.vcard img.photo {}
+ol.commentlist li.comment div.vcard span.says {}
+ol.commentlist li.comment div.commentmetadata {}
+ol.commentlist li.comment div.comment-meta {font-size: 10px;}
+ol.commentlist li.comment div.comment-meta a {color: #ccc;}
+ol.commentlist li.comment p {}
+ol.commentlist li.comment ul {}
+ol.commentlist li.comment div.reply {font-size: 11px;}
+ol.commentlist li.comment div.reply a {font-weight: bold;}
+ol.commentlist li.comment ul.children {list-style: none; margin: 10px 0 0;}
+ol.commentlist li.comment ul.children li {}
+ol.commentlist li.comment ul.children li.alt {}
+ol.commentlist li.comment ul.children li.bypostauthor {}
+ol.commentlist li.comment ul.children li.byuser {}
+ol.commentlist li.comment ul.children li.comment {}
+ol.commentlist li.comment ul.children li.comment-author-admin {}
+ol.commentlist li.comment ul.children li.depth-2 {border-left: 5px solid #555; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-3 {border-left: 5px solid #999; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-4 {border-left: 5px solid #bbb; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-5 {}
+ol.commentlist li.comment ul.children li.odd {}
+ol.commentlist li.even {background: #fff;}
+ol.commentlist li.odd {background: #f6f6f6;}
+ol.commentlist li.parent {border-left: 5px solid #111;}
+ol.commentlist li.thread-alt {}
+ol.commentlist li.thread-even {}
+ol.commentlist li.thread-odd {}
 
 
-} /* END screen media */
-
-
-@media print {
-
-.do-not-print { display: none; }
-#comments { page-break-before: always; }
-
-body { width: 100% !important; margin: 0 !important; padding: 0 !important; line-height: 1.4; word-spacing: 1.1pt; letter-spacing: 0.2pt; font-family: Garamond,"Times New Roman", serif; color: #000; background: none; font-size: 12pt; }
-h1,h2,h3,h4,h5,h6 { font-family: Helvetica, Arial, sans-serif; }
-h1 { font-size: 19pt; }
-h2 { font-size:17pt; }
-h3 { font-size:15pt; }
-h4,h5,h6 { font-size:12pt; }
-code { font: 10pt Courier, monospace; } 
-blockquote { margin: 1.3em; padding: 1em; }
-img { display: block; margin: 1em 0; }
-a img { border: none; }
-table { margin: 1px; text-align:left; }
-th { border-bottom: 1px solid #333;  font-weight: bold; }
-td { border-bottom: 1px solid #333; }
-th, td { padding: 4px 10px 4px 0; }
-caption { background: #fff; margin-bottom: 2em; text-align: left; }
-thead { display: table-header-group; }
-tr { page-break-inside: avoid; } 
-a { text-decoration: none; color: black; }
-  
-} /* END print media */
