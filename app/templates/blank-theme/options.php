@@ -31,6 +31,10 @@ function optionsframework_option_name() {
 
 function optionsframework_options() {
 
+	// If using image radio buttons, define a directory path
+	$imagepath =  get_template_directory_uri() . '/static/images/';
+
+
 	// Test data
 	$test_array = array(
 		'one' => __('One', 'options_check'),
@@ -100,8 +104,7 @@ function optionsframework_options() {
 		$options_pages[$page->ID] = $page->post_title;
 	}
 
-	// If using image radio buttons, define a directory path
-	$imagepath =  get_template_directory_uri() . '/images/';
+	
 
 	$options = array();
 
