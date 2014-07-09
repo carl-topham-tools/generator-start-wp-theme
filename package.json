@@ -1,6 +1,6 @@
 {
   "name": "generator-start-wp-theme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A starting point for developing Wordpress themes",
   "keywords": [
     "yeoman-generator",

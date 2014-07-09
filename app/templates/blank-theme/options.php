@@ -35,6 +35,154 @@ function optionsframework_options() {
 	$imagepath =  get_template_directory_uri() . '/static/images/';
 
 
+	// Pull all the categories into an array
+	$options_categories = array();
+	$options_categories_obj = get_categories();
+	foreach ($options_categories_obj as $category) {
+		$options_categories[$category->cat_ID] = $category->cat_name;
+	}
+	
+	// Pull all tags into an array
+	$options_tags = array();
+	$options_tags_obj = get_tags();
+	foreach ( $options_tags_obj as $tag ) {
+		$options_tags[$tag->term_id] = $tag->name;
+	}
+
+	// Pull all the pages into an array
+	$options_pages = array();
+	$options_pages_obj = get_pages('sort_column=post_parent,menu_order');
+	$options_pages[''] = 'Select a page:';
+	foreach ($options_pages_obj as $page) {
+		$options_pages[$page->ID] = $page->post_title;
+	}
+
+	$options = array();
+
+	$options[] = array(
+		'name' => __('Header Meta', '<%= themeNameSpace %>'),
+		'type' => 'heading');
+
+// Standard Meta
+	$options[] = array(
+		'name' => __('Head ID', '<%= themeNameSpace %>'),
+		'desc' => __("", '<%= themeNameSpace %>'),
+		'id' => 'meta_headid',
+		'std' => 'www-sitename-com',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('Google Webmasters', '<%= themeNameSpace %>'),
+		'desc' => __("Speaking of Google, don't forget to set your site up: <a href='http://google.com/webmasters' target='_blank'>http://google.com/webmasters</a>", '<%= themeNameSpace %>'),
+		'id' => 'meta_google',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('Author Name', '<%= themeNameSpace %>'),
+		'desc' => __('Populates meta author tag.', '<%= themeNameSpace %>'),
+		'id' => 'meta_author',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('Mobile Viewport', '<%= themeNameSpace %>'),
+		'desc' => __('Uncomment to use; use thoughtfully!', '<%= themeNameSpace %>'),
+		'id' => 'meta_viewport',
+		'std' => 'width=device-width, initial-scale=1.0',
+		'type' => 'text');
+
+// Icons
+	$options[] = array(
+		'name' => __('Site Favicon', '<%= themeNameSpace %>'),
+		'desc' => __('', '<%= themeNameSpace %>'),
+		'id' => 'head_favicon',
+		'type' => 'upload');
+	$options[] = array(
+		'name' => __('Apple Touch Icon', '<%= themeNameSpace %>'),
+		'desc' => __('', '<%= themeNameSpace %>'),
+		'id' => 'head_apple_touch_icon',
+		'type' => 'upload');
+
+// App: Windows 8
+	$options[] = array(
+		'name' => __('App: Windows 8', '<%= themeNameSpace %>'),
+		'desc' => __('Application Name', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_win_name',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('Tile Color', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_win_color',
+		'std' => '',
+		'type' => 'color');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('Tile Image', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_win_image',
+		'std' => '',
+		'type' => 'upload');
+
+// App: Twitter
+	$options[] = array(
+		'name' => __('App: Twitter Card', '<%= themeNameSpace %>'),
+		'desc' => __('twitter:card (summary, photo, gallery, product, app, player)', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_twt_card',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('twitter:site (@username of website)', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_twt_site',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __("twitter:title (the user's Twitter ID)", '<%= themeNameSpace %>'),
+		'id' => 'meta_app_twt_title',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('twitter:description (maximum 200 characters)', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_twt_description',
+		'std' => '',
+		'type' => 'textarea');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('twitter:url (url for the content)', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_twt_url',
+		'std' => '',
+		'type' => 'text');
+
+// App: Facebook
+	$options[] = array(
+		'name' => __('App: Facebook', '<%= themeNameSpace %>'),
+		'desc' => __('og:title', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_fb_title',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('og:description', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_fb_description',
+		'std' => '',
+		'type' => 'textarea');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('og:url', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_fb_url',
+		'std' => '',
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('', '<%= themeNameSpace %>'),
+		'desc' => __('og:image', '<%= themeNameSpace %>'),
+		'id' => 'meta_app_fb_image',
+		'std' => '',
+		'type' => 'upload');
+
+	return $options;
+
+	/* FIELD OPTIONS */
+	/*
 	// Test data
 	$test_array = array(
 		'one' => __('One', 'options_check'),
@@ -270,13 +418,6 @@ function optionsframework_options() {
 		'name' => __('Text Editor', 'options_check'),
 		'type' => 'heading' );
 
-	/**
-	 * For $settings options see:
-	 * http://codex.wordpress.org/Function_Reference/wp_editor
-	 *
-	 * 'media_buttons' are not supported as there is no post to attach items to
-	 * 'textarea_name' is set by the 'id' you choose
-	 */
 
 	$wp_editor_settings = array(
 		'wpautop' => true, // Default
@@ -306,5 +447,7 @@ function optionsframework_options() {
 
 
 	return $options;
+
+	*/
 
 }
