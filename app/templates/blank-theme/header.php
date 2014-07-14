@@ -13,7 +13,7 @@
 <!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 
-<head id="<?php echo of_get_option('meta_headid'); ?>" data-template-set="html5-reset-wordpress-theme">
+<head id="<?php echo of_get_option('meta_headid'); ?>" data-template-set="<%= themeNameSpace %>-wordpress-theme">
 
 	<meta charset="<?php bloginfo('charset'); ?>">
 
@@ -77,8 +77,9 @@
 		if (true == of_get_option('head_apple_touch_icon'))
 			echo '<link rel="apple-touch-icon" href="' . of_get_option("head_apple_touch_icon") . '">';
 	?>
-
+		<!-- CSS is loaded via the enqueue function - change as necessary 
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/static/css/style.css" />
+		-->
 
 		<!-- This is an un-minified, complete version of Modernizr.
 			 Before you move to production, you should generate a custom build that only has the detects you need. -->

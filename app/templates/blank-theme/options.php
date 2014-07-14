@@ -68,7 +68,7 @@ function optionsframework_options() {
 		'name' => __('Head ID', '<%= themeNameSpace %>'),
 		'desc' => __("", '<%= themeNameSpace %>'),
 		'id' => 'meta_headid',
-		'std' => 'www-sitename-com',
+		'std' => '<%= themeNameSpace %>',
 		'type' => 'text');
 	$options[] = array(
 		'name' => __('Google Webmasters', '<%= themeNameSpace %>'),
