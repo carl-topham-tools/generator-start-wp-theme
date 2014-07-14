@@ -127,4 +127,28 @@
 		);
 	}
 
+
+
+
+
+/* Uncomment to add custom image sizes
+
+function <%= themeNameSpace %>_add_image_sizes() {
+    add_image_size( '<%= themeNameSpace %>-thumb', 300, 100, true );
+    add_image_size( '<%= themeNameSpace %>-large', 600, 300, true );
+}
+add_action( 'init', '<%= themeNameSpace %>_add_image_sizes' );
+ 
+
+
+function <%= themeNameSpace %>_show_image_sizes($sizes) {
+    $sizes['<%= themeNameSpace %>-thumb'] = __( '<%= themeName %> Thumb', '<%= themeNameSpace %>' );
+    $sizes['<%= themeNameSpace %>-large'] = __( '<%= themeName %> Large', '<%= themeNameSpace %>' );
+ 
+    return $sizes;
+}
+add_filter('image_size_names_choose', '<%= themeNameSpace %>_show_image_sizes');
+
+*/
+
 ?>
