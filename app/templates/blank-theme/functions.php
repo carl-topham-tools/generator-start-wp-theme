@@ -151,4 +151,32 @@ add_filter('image_size_names_choose', '<%= themeNameSpace %>_show_image_sizes');
 
 */
 
+
+
+
+
+/* Uncomment to add minimum image upload sizes
+
+add_filter('wp_handle_upload_prefilter','<%= themeNameSpace %>_handle_upload_prefilter');
+//Set the minimum file sizes
+$minimumWidth = '640';
+$minimumHeight = '480';
+
+function <%= themeNameSpace %>_handle_upload_prefilter($file)
+{
+
+    $img=getimagesize($file['tmp_name']);
+    $minimum = array('width' => $minimumWidth, 'height' => $minimumHeight);
+    $width= $img[0];
+    $height =$img[1];
+
+    if ($width < $minimum['width'] )
+        return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
+
+    elseif ($height <  $minimum['height'])
+        return array("error"=>"Image dimensions are too small. Minimum height is {$minimum['height']}px. Uploaded image height is $height px");
+    else
+        return $file; 
+}
+*/
 ?>
