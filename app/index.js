@@ -141,12 +141,19 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
     //this.mkdir(this.themeNameSpace+'/dist'); //created at runtime
     this.mkdir(this.themeNameSpace+'/dev');
     this.mkdir(this.themeNameSpace+'/dev/src');
+    this.mkdir(this.themeNameSpace+'/dev/src/fonts');
 
     //make folder for the task runners
     this.mkdir(this.themeNameSpace+'/dev/tasks');
 
     //make the static content
     this.mkdir(this.themeNameSpace+'/static');
+    this.mkdir(this.themeNameSpace+'/static/fonts');
+    this.mkdir(this.themeNameSpace+'/static/js');
+
+    //copy the base images that are used by the options setup (for the example)
+    this.directory('frameworks/images', this.themeNameSpace+'/dev/src/images');
+
 
     //copy framework/base js across
     this.directory('frameworks/js', this.themeNameSpace+'/dev/src/js');
@@ -158,7 +165,7 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
     
     this.template('frameworks/scss/_variables.scss', this.themeNameSpace+'/dev/src/scss/_variables.scss', context);
     this.template('frameworks/scss/style.scss', this.themeNameSpace+'/dev/src/scss/style.scss', context);
-
+    this.template('frameworks/scss/ie.scss', this.themeNameSpace+'/dev/src/scss/ie.scss', context);
 
 
    

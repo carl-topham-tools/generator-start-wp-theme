@@ -22,7 +22,21 @@ module.exports = function (grunt) {
         },
       },
       php: {
-        files: '../../**/*php',
+        files: '../../**/*.php',
+        options: {
+          livereload: true,
+        },
+      },
+      images: {
+        files: '../src/images/**/*.{png,jpg,gif,svg}',
+        tasks: ['copy:images'],
+        options: {
+          livereload: true,
+        },
+      },
+      fonts: {
+        files: '../src/fonts/**/*',
+        tasks: ['copy:fonts'],
         options: {
           livereload: true,
         },
@@ -38,6 +52,7 @@ module.exports = function (grunt) {
         },
         files: { // Dictionary of files
           '../../static/css/style.css': '../src/scss/style.scss',
+          '../../static/css/ie.css': '../src/scss/ie.scss',
         }
       },
       dist: { // Target
@@ -46,6 +61,7 @@ module.exports = function (grunt) {
         },
         files: { // Dictionary of files
           '../../static/css/style.css': '../src/scss/style.scss',
+          '../../static/css/ie.css': '../src/scss/ie.scss',
         }
       }
     },
@@ -139,17 +155,61 @@ module.exports = function (grunt) {
           // includes files within path
           {expand: true, cwd: '../src/js', src: ['*.js'], dest: '../../static/js', filter: 'isFile'},
         ]
+      },
+      images: {
+        files: [
+          // includes files within path
+          {expand: true, cwd: '../src/images', src: ['**/*.{png,jpg,gif,svg}'], dest: '../../static/images', filter: 'isFile'},
+        ]
+      },
+      fonts: {
+        files: [
+          // includes files within path
+          {expand: true, cwd: '../src/fonts', src: ['**/*'], dest: '../../static/fonts', filter: 'isFile'},
+        ]
+      }
+    },
+    //end copy
+
+
+    //Image min
+    imagemin: {                         
+      dynamic: {                         
+        files: [{
+          expand: true,                  
+          src: ['../../static/images/**/*.{png,jpg,gif}'],
+          dest: '../../static/images'
+        }]
+      }
+    },
+    //end image min
+
+    // make a zipfile
+    compress: {
+      production: {
+        options: {
+          archive: '../../production/<%= site_nameSpace %>.zip'
+        },
+        files: [
+          { src: ['../../**/*',  '!../../dev/**', '!../../production/**'] },
+        ]
       }
     }
-    //end copy
+    // end make a zipfile
     
   }); //end grunt package configs
+  
+  //Asset pipelines
+  grunt.registerTask('prepJS',     [ 'copy:js' ]);
+  grunt.registerTask('prepStyles', [ 'sass:dist', 'autoprefixer', 'cssmin' ]);
+  grunt.registerTask('prepImages', [ 'copy:images', 'imagemin:dynamic' ]);
+  grunt.registerTask('prepFonts',  [ 'copy:fonts' ]);
 
   //RUN ON START
-  grunt.registerTask('init', ['notify:initStart', 'bowercopy', 'copy:js', 'sass:dev','notify:initDone']);
+  grunt.registerTask('init',       ['notify:initStart', 'bowercopy', 'copy:js', 'copy:images', 'sass:dev','notify:initDone']);
 
-  //RUN ON COMPLETION
-  grunt.registerTask('dist', ['notify:distStart', 'bowercopy', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
+  //RUN FOR PRODUCTION 
+  grunt.registerTask('prod',       ['notify:distStart', 'bowercopy', 'prepJS', 'prepImages', 'prepStyles', 'prepFonts', 'compress:production', 'notify:distDone']);
   
   //DEFAULT
   grunt.registerTask('default', []);
