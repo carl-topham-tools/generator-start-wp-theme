@@ -191,7 +191,11 @@ module.exports = function (grunt) {
           archive: '../../production/<%= site_nameSpace %>.zip'
         },
         files: [
-          { src: ['../../**/*',  '!../../dev/**', '!../../production/**'] },
+          { 
+            expand: true,
+            cwd: '../../',
+            src: ['**/*', '!dev/', '!production/**']
+          }
         ]
       }
     }
